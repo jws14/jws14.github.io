@@ -1,6 +1,6 @@
 project:"Jeremy Sun"
   type: website
-  output-dir: "."
+  output-dir:
 
 website:
   title: "Jeremy Sun"
