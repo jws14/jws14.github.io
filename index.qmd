@@ -26,7 +26,7 @@ about: "Jeremy SUn"
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Jeremy Sun majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
 
 ## Education
 
