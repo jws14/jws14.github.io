@@ -1,6 +1,6 @@
 ---
 title: "Jeremy Sun"
-about:
+about: "Jeremy SUn"
   template: trestles  # jolla  trestles  solana  marquee  broadside
   image: img/profile.png
   image-width: 15em
@@ -21,7 +21,7 @@ about:
       href: https://GITHUB_USERNAME.github.io/resume-example.pdf
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:jws14@geneseo.edu
 
 ---
 

@@ -4,7 +4,7 @@ project:"Jeremy Sun"
 
 website:
   title: "Jeremy Sun"
-  navbar:
+  navbar: "Jeremy Sun"
     pinned: true
     left:
       - text: Project
