@@ -1,10 +1,10 @@
-project:"Jeremy Sun"
+project:
   type: website
-  output-dir:
+  output-dir: "."
 
 website:
-  title: "Jeremy Sun"
-  navbar: "Jeremy Sun"
+  title: "YOUR NAME"
+  navbar:
     pinned: true
     left:
       - text: Project
