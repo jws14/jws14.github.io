@@ -19,5 +19,11 @@
   },
   "project.qmd": {
     "project.html": "7c2781fb"
+  },
+  "posts/starwars2/starwars2.qmd": {
+    "starwars2.html": "0f951d7c"
+  },
+  "danlCW10.qmd": {
+    "danlCW10.html": "0e1a6e38"
   }
 }

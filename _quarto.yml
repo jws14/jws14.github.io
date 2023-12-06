@@ -5,12 +5,14 @@ project:
 website:
   title: "Jeremy Sun"
   navbar:
-    pinned: true
+    pinned: true #first level indention
     left:
-      - text: Project
+      - text: Project #second level indention 
         href: project.qmd
       - text: Blog
         href: blog-listing.qmd
+      -  text: Classwork
+         href: danlCW10.qmd
   page-footer: 
     center: "Powered with GitHub and Quarto<br>© YOUR NAME, 2023"
 

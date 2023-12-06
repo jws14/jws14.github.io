@@ -1,5 +1,5 @@
 ---
-title: "YOUR NAME"
+title: "Jeremy Sun"
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
   image: img/profile.png
@@ -15,18 +15,18 @@ about:
       href: https://instagram.com
     - icon: github
       text: GitHub
-      href: https://github.com
+      href: https://github.com/jws14
     - icon: file-earmark-pdf
       text: Resumé
       href: https://GITHUB_USERNAME.github.io/resume-example.pdf
     - icon: mailbox
       text: Email
-      href: mailto:YOUR_EMAIL@geneseo.edu
+      href: mailto:jws14@geneseo.edu
 
 ---
 
 
-Finley Malloc majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Finley enjoys spending time unicycling and playing with her pet iguana.
+Jeremy Sun majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Jeremy enjoys spending time listening to music and drawing anything that comes to mind.
 
 ## Education
 

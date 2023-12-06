@@ -1,0 +1,143 @@
+---
+title: "DANL 200: Introduction to Data Analytics<br>Project"
+subtitle: "Quarto Template<br><br>" 
+author: 
+  - name: Jeremy Sun
+    affiliations:
+      - name: SUNY Geneseo
+  
+   
+  - <br>
+date: "`r Sys.Date()`"
+
+format: 
+  html:
+    toc: true
+    number-sections: false
+    code-fold: false       # https://quarto.org/docs/output-formats/html-code.html
+    code-summary: "Show the code"
+    code-tools: true
+    highlight-style: espresso # atom-one tango espresso
+
+execute: 
+  echo: true
+  eval: true
+  warning: false
+  message: false
+  fig-width: 9
+  
+---
+
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(hrbrthemes)
+library(skimr)
+
+```
+
+
+```{r}
+oj <- read_csv('https://bcdanl.github.io/data/dominick_oj.csv')
+nvars <- format(round(ncol(oj), 0), 
+                nsmall=0, 
+                big.mark=",") 
+nobs <- format(round(nrow(oj), 0), 
+                nsmall=0, 
+                big.mark=",")
+```
+
+- Here is the paged table using `rmarkdown::paged_table()` with the `results = 'asis'` chunk option.
+
+```{r}
+#| results: asis
+#| echo: false
+rmarkdown::paged_table(oj) 
+```
+
+
+```{r}
+theme_set(theme_ipsum()+
+          theme(strip.background =element_rect(fill="lightgray"),
+                axis.title.x = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(10,0,0,0)),
+                axis.title.y = 
+                  element_text(angle = 0,
+                               size = rel(1.33),
+                               margin = margin(0,10,0,0))
+                )
+          )
+
+```
+
+```{r}
+billboard <- read_csv('https://bcdanl.github.io/data/billboard.csv')
+rmarkdown::paged_table(billboard)
+```
+
+
+
+##Q!A
+
+--Describe how the distribution of rating varies across week 1, week 2, and week 3 using the faceted histogram.
+
+```{r}
+ggplot(billboard) +
+  geom_histogram(aes(x= wk1))
+```
+
+### Wit Facet
+
+```{r}
+q1a <- billboard %>% 
+  pivot_longer(col = wk1:wk76,
+               names_to = "week",
+               values_to = "rating" ) %>% 
+  filter(week %in% c('wk1','wk2','wk3' ) )  
+
+
+
+```
+
+```{r}
+
+
+```
+
+
+##Q1B
+
+
+--Which artist(s) have the most number of tracks in billboard data.frame?
+
+--Do not double-count an artist’s tracks if they appear in multiple weeks.
+
+
+
+##Q2A
+
+--Make ny_pincp longer.
+
+##Q2B
+
+--Provide both (1) ggplot code and (2) a simple comment to describe how overall the yearly trend of NY counties’ average personal incomes are.
+
+
+##Q3A
+--Keep only the following three variables, date, countriesAndTerritories, and cases.
+
+Then make a wide-form data.frame of covid whose variable names are from countriesAndTerritories and values are from cases.
+
+Then drop the variable date.
+
+
+
+##Q3B
+
+Use the wide-form data.frame of covid to find the top 10 countries in terms of the correlation between their cases and the USA case.
+Use cor(data.frame), which returns a matrix.
+Then convert it to data.frame using as.data.frame(matrix)
+
+
