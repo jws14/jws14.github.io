@@ -21,25 +21,25 @@
     "text": "2.2 MPG and a Type of Cars\nThe following boxplot shows how the distribution of highway MPG (hwy) varies by a type of cars (class) 🚙 🚚 🚐.\n\nggplot(data = mpg) +\n  geom_boxplot(aes(x = class, y = hwy, fill = class),\n               show.legend = F) +\n  labs(x = \"Class\", y = \"Highway\\nMPG\")"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "danl200-hw5-Sun-Jeremy.html",
+    "href": "danl200-hw5-Sun-Jeremy.html",
+    "title": "danl200-hw5-Sun-Jeremy",
+    "section": "",
+    "text": "##Q1A\n#Github repository link https://github.com/jws14/jws14.github.io\n\nlibrary(skimr)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n##Q2\n\nNFL2022_stuffs &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')\n\nRows: 50147 Columns: 10\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (2): game_id, posteam\ndbl (8): play_id, drive, week, qtr, down, half_seconds_remaining, pass, wp\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n##Q2A\n\nNFL2022_stuffs &lt;-  NFL2022_stuffs %&gt;% \n  filter(!is.na(posteam))\n\n##Q2B\n\nsummary_data &lt;-  NFL2022_stuffs %&gt;% \n  filter(wp &gt; .2 & wp &lt; .75,\n         down &lt;=2,\n         half_seconds_remaining &gt; 120) %&gt;% \n  group_by(posteam) %&gt;% \n  summarize(mean_pass = mean(pass, na.rm = TRUE))\n\n##Q2C\n\nsummary_graph &lt;- summary_data %&gt;% \n  mutate(posteam = reorder(posteam, mean_pass))\n\nggplot(summary_graph, aes(x= mean_pass, y = posteam)) +\n  geom_point() \n\n\n\n\n##Q2D\n\nNFL2022_epa &lt;- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')\n\nRows: 46427 Columns: 7\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (4): game_id, posteam, receiver, passer\ndbl (3): play_id, drive, epa\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nNFL2022_stuffs_EPA &lt;-  bind_cols( NFL2022_stuffs, NFL2022_epa %&gt;% \n                                    select(passer, receiver, epa))\nNFL2022_stuffs_EPA &lt;-  NFL2022_stuffs_EPA %&gt;% \n  filter(!is.na(passer))\n\n##Q2E\n\npasser_data &lt;-  NFL2022_stuffs_EPA %&gt;% \n  filter(passer %in% c( \"J.Allen\", \"P.Mahomes\"))\nmean_epa &lt;-  passer_data %&gt;% \n  group_by( week, passer) %&gt;% \n  summarize(mean_epa = mean(epa, na.rm = TRUE))\n\n`summarise()` has grouped output by 'week'. You can override using the\n`.groups` argument.\n\nggplot(passer_data, aes(x = week, y = epa, color = passer)) +\n  geom_line() +\n  scale_color_manual(values = c(\"J.Allen\" = 'blue', \"P.Mahomes\"\n                                = 'red'))\n\n\n\n\n##Q2F\n\nspread_data &lt;- mean_epa %&gt;% \n  spread(passer, mean_epa)\nspread_data &lt;- spread_data %&gt;% \n  mutate(diff_JALLEN_PMAHOME = J.Allen - P.Mahomes)"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "danlCW10.html",
+    "href": "danlCW10.html",
     "title": "Jeremy Sun",
     "section": "",
-    "text": "Jeremy Sun majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Jeremy enjoys spending time listening to music and drawing anything that comes to mind."
-  },
-  {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Jeremy Sun",
-    "section": "Education",
-    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Data Analytics | Aug 2022 - May 2026  Minor in Business Administration"
-  },
-  {
-    "objectID": "index.html#experience",
-    "href": "index.html#experience",
-    "title": "Jeremy Sun",
-    "section": "Experience",
-    "text": "Experience\nStarbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024"
+    "text": "oj &lt;- read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\n\nRows: 28947 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): brand\ndbl (3): sales, price, ad\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nnvars &lt;- format(round(ncol(oj), 0), \n                nsmall=0, \n                big.mark=\",\") \nnobs &lt;- format(round(nrow(oj), 0), \n                nsmall=0, \n                big.mark=\",\")\n\n\nHere is the paged table using rmarkdown::paged_table() with the results = 'asis' chunk option.\n\n\n\n\n  \n\n\n\ntheme_set(theme_ipsum()+\n          theme(strip.background =element_rect(fill=\"lightgray\"),\n                axis.title.x = \n                  element_text(angle = 0,\n                               size = rel(1.33),\n                               margin = margin(10,0,0,0)),\n                axis.title.y = \n                  element_text(angle = 0,\n                               size = rel(1.33),\n                               margin = margin(0,10,0,0))\n                )\n          )\n\n\nbillboard &lt;- read_csv('https://bcdanl.github.io/data/billboard.csv')\n\nRows: 317 Columns: 81\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr   (2): artist, track\ndbl  (66): year, wk1, wk2, wk3, wk4, wk5, wk6, wk7, wk8, wk9, wk10, wk11, wk...\nlgl  (11): wk66, wk67, wk68, wk69, wk70, wk71, wk72, wk73, wk74, wk75, wk76\ndate  (1): date.entered\ntime  (1): time\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nrmarkdown::paged_table(billboard)\n\n\n\n  \n\n\n\n##Q!A\n–Describe how the distribution of rating varies across week 1, week 2, and week 3 using the faceted histogram.\n\nggplot(billboard) +\n  geom_histogram(aes(x= wk1))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\nWit Facet\n\nq1a &lt;- billboard %&gt;% \n  pivot_longer(col = wk1:wk76,\n               names_to = \"week\",\n               values_to = \"rating\" ) %&gt;% \n  filter(week %in% c('wk1','wk2','wk3' ) )  \n\n##Q1B\n–Which artist(s) have the most number of tracks in billboard data.frame?\n–Do not double-count an artist’s tracks if they appear in multiple weeks.\n##Q2A\n–Make ny_pincp longer.\n##Q2B\n–Provide both (1) ggplot code and (2) a simple comment to describe how overall the yearly trend of NY counties’ average personal incomes are.\n##Q3A –Keep only the following three variables, date, countriesAndTerritories, and cases.\nThen make a wide-form data.frame of covid whose variable names are from countriesAndTerritories and values are from cases.\nThen drop the variable date.\n##Q3B\nUse the wide-form data.frame of covid to find the top 10 countries in terms of the correlation between their cases and the USA case. Use cor(data.frame), which returns a matrix. Then convert it to data.frame using as.data.frame(matrix)"
   },
   {
     "objectID": "posts/starwars2/starwars2.html",
@@ -63,18 +63,25 @@
     "text": "Human vs. Droid\n\nggplot(data = \n         starwars %&gt;% \n         filter(species %in% c(\"Human\", \"Droid\"))) +\n  geom_boxplot(aes(x = species, y = mass, \n                   fill = species),\n               show.legend = FALSE)"
   },
   {
-    "objectID": "danlCW10.html",
-    "href": "danlCW10.html",
+    "objectID": "index.html",
+    "href": "index.html",
     "title": "Jeremy Sun",
     "section": "",
-    "text": "oj &lt;- read_csv('https://bcdanl.github.io/data/dominick_oj.csv')\n\nRows: 28947 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (1): brand\ndbl (3): sales, price, ad\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nnvars &lt;- format(round(ncol(oj), 0), \n                nsmall=0, \n                big.mark=\",\") \nnobs &lt;- format(round(nrow(oj), 0), \n                nsmall=0, \n                big.mark=\",\")\n\n\nHere is the paged table using rmarkdown::paged_table() with the results = 'asis' chunk option.\n\n\n\n\n  \n\n\n\ntheme_set(theme_ipsum()+\n          theme(strip.background =element_rect(fill=\"lightgray\"),\n                axis.title.x = \n                  element_text(angle = 0,\n                               size = rel(1.33),\n                               margin = margin(10,0,0,0)),\n                axis.title.y = \n                  element_text(angle = 0,\n                               size = rel(1.33),\n                               margin = margin(0,10,0,0))\n                )\n          )\n\n\nbillboard &lt;- read_csv('https://bcdanl.github.io/data/billboard.csv')\n\nRows: 317 Columns: 81\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr   (2): artist, track\ndbl  (66): year, wk1, wk2, wk3, wk4, wk5, wk6, wk7, wk8, wk9, wk10, wk11, wk...\nlgl  (11): wk66, wk67, wk68, wk69, wk70, wk71, wk72, wk73, wk74, wk75, wk76\ndate  (1): date.entered\ntime  (1): time\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nrmarkdown::paged_table(billboard)\n\n\n\n  \n\n\n\n##Q!A\n–Describe how the distribution of rating varies across week 1, week 2, and week 3 using the faceted histogram.\n\nggplot(billboard) +\n  geom_histogram(aes(x= wk1))\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\nWit Facet\n\nq1a &lt;- billboard %&gt;% \n  pivot_longer(col = wk1:wk76,\n               names_to = \"week\",\n               values_to = \"rating\" ) %&gt;% \n  filter(week %in% c('wk1','wk2','wk3' ) )  \n\n##Q1B\n–Which artist(s) have the most number of tracks in billboard data.frame?\n–Do not double-count an artist’s tracks if they appear in multiple weeks.\n##Q2A\n–Make ny_pincp longer.\n##Q2B\n–Provide both (1) ggplot code and (2) a simple comment to describe how overall the yearly trend of NY counties’ average personal incomes are.\n##Q3A –Keep only the following three variables, date, countriesAndTerritories, and cases.\nThen make a wide-form data.frame of covid whose variable names are from countriesAndTerritories and values are from cases.\nThen drop the variable date.\n##Q3B\nUse the wide-form data.frame of covid to find the top 10 countries in terms of the correlation between their cases and the USA case. Use cor(data.frame), which returns a matrix. Then convert it to data.frame using as.data.frame(matrix)"
+    "text": "Jeremy Sun majors in Data Analytics at SUNY Geneseo. When not working on data analytics, Jeremy enjoys spending time listening to music and drawing anything that comes to mind."
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Jeremy Sun",
+    "section": "Education",
+    "text": "Education\nState University of New York at Geneseo | Geneseo, NY  B.S. in Data Analytics | Aug 2022 - May 2026  Minor in Business Administration"
+  },
+  {
+    "objectID": "index.html#experience",
+    "href": "index.html#experience",
+    "title": "Jeremy Sun",
+    "section": "Experience",
+    "text": "Experience\nStarbucks Analytics | Data Analyst Intern | May 2024 - Aug 2024"
   },
   {
     "objectID": "blog-listing.html",
