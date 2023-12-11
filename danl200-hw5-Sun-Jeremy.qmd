@@ -1,0 +1,83 @@
+---
+title: "danl200-hw5-Sun-Jeremy"
+editor: visual
+---
+
+##Q1A
+
+#Github repository link https://github.com/jws14/jws14.github.io
+
+```{r}
+library(skimr)
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+```
+
+##Q2
+
+```{r}
+NFL2022_stuffs <- read_csv('https://bcdanl.github.io/data/NFL2022_stuffs.csv')
+
+```
+
+##Q2A
+
+```{r}
+NFL2022_stuffs <-  NFL2022_stuffs %>% 
+  filter(!is.na(posteam))
+
+```
+
+##Q2B
+
+```{r}
+summary_data <-  NFL2022_stuffs %>% 
+  filter(wp > .2 & wp < .75,
+         down <=2,
+         half_seconds_remaining > 120) %>% 
+  group_by(posteam) %>% 
+  summarize(mean_pass = mean(pass, na.rm = TRUE))
+```
+
+##Q2C
+
+```{r}
+summary_graph <- summary_data %>% 
+  mutate(posteam = reorder(posteam, mean_pass))
+
+ggplot(summary_graph, aes(x= mean_pass, y = posteam)) +
+  geom_point() 
+```
+
+##Q2D
+
+```{r}
+NFL2022_epa <- read_csv('https://bcdanl.github.io/data/NFL2022_epa.csv')
+
+NFL2022_stuffs_EPA <-  bind_cols( NFL2022_stuffs, NFL2022_epa %>% 
+                                    select(passer, receiver, epa))
+NFL2022_stuffs_EPA <-  NFL2022_stuffs_EPA %>% 
+  filter(!is.na(passer))
+```
+
+##Q2E
+```{r}
+passer_data <-  NFL2022_stuffs_EPA %>% 
+  filter(passer %in% c( "J.Allen", "P.Mahomes"))
+mean_epa <-  passer_data %>% 
+  group_by( week, passer) %>% 
+  summarize(mean_epa = mean(epa, na.rm = TRUE))
+ggplot(passer_data, aes(x = week, y = epa, color = passer)) +
+  geom_line() +
+  scale_color_manual(values = c("J.Allen" = 'blue', "P.Mahomes"
+                                = 'red'))
+```
+
+##Q2F
+```{r}
+spread_data <- mean_epa %>% 
+  spread(passer, mean_epa)
+spread_data <- spread_data %>% 
+  mutate(diff_JALLEN_PMAHOME = J.Allen - P.Mahomes)
+```
