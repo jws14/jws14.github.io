@@ -9,7 +9,7 @@ about:
   links:
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/jeremy-sun-ba95a0270/
     - icon: instagram
       text: Instagram
       href: https://instagram.com
