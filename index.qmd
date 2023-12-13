@@ -2,7 +2,7 @@
 title: "Jeremy Sun"
 about:
   template: trestles  # jolla  trestles  solana  marquee  broadside
-  image: img/IMG_3066.jpg
+  image: img/SunJProfile.png
   image-width: 15em
   image-shape: round # rectangle  round  rounded
   
