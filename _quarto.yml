@@ -8,7 +8,7 @@ website:
     pinned: true #first level indention
     left:
       - text: Project #second level indention 
-        href: project.qmd
+        href: DANL200 Project.qmd
       - text: Blog
         href: blog-listing.qmd
       -  text: Classwork
